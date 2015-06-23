@@ -40,7 +40,7 @@ def descargar_pdf(doi, path):
         data = f.read()
         pdf_name = pdf_name.encode('utf-8')
         if data:
-            with open("/home/vigtech/shared/repository/"+path+"/"+pdf_name.encode('utf-8'), "wb") as code:
+            with open("/home/vigtech/shared/repository/"+path+"/"+pdf_name, "wb") as code:
                 code.write(data)
             return {'downloaded': 'true', 'metadata': j['message']}
         else:
