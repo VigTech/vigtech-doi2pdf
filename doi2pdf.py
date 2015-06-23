@@ -35,7 +35,7 @@ def descargar_pdf(doi, path):
         f = urllib2.urlopen(pdf_url)
         data = f.read()
         if data:
-            with open(path+"/"+pdf_name, "wb") as code:
+            with open("/home/vigtech/shared/repository/"+path+"/"+pdf_name, "wb") as code:
                 code.write(data)
             return {'downloaded': 'true', 'metadata': j['message']}
         else:
