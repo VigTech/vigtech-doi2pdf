@@ -2,6 +2,10 @@ from flask import Flask
 from flask import request
 from flask import jsonify
 import lxml.html, urllib2, urlparse, urllib, simplejson as json
+import sys  
+
+reload(sys)  
+sys.setdefaultencoding('utf8')
 
 def descargar_pdf(doi, path):
     # the url of the page you want to scrape
@@ -34,8 +38,9 @@ def descargar_pdf(doi, path):
             pdf_name = doi
         f = urllib2.urlopen(pdf_url)
         data = f.read()
+        pdf_name = pdf_name.encode('utf-8')
         if data:
-            with open("/home/vigtech/shared/repository/"+path+"/"+pdf_name, "wb") as code:
+            with open("/home/vigtech/shared/repository/"+path+"/"+pdf_name.encode('utf-8'), "wb") as code:
                 code.write(data)
             return {'downloaded': 'true', 'metadata': j['message']}
         else:
